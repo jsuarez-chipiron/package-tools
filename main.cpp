@@ -62,7 +62,7 @@ void parse(std::string content,
     }
 }
 
-void print(const std::unordered_map<std::string, std::set<std::string>>& map, const std::set<std::string>& index)
+void print(const std::unordered_map<std::string, std::set<std::string>>& map, const std::set<std::string>& index, std::string_view version)
 {
     std::cout << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n";
     std::cout << "<Package xmlns=\"http://soap.sforce.com/2006/04/metadata\">\n";
@@ -77,13 +77,13 @@ void print(const std::unordered_map<std::string, std::set<std::string>>& map, co
         std::cout << "    </types>\n";
     }
 
-    std::cout << "    <version>53.0</version>\n";
+    std::cout << "    <version>" << version << "</version>\n";
     std::cout << "</Package>\n";
 }
 
 int main(int argc, char ** argv)
 {
-    if ( argc != 3 ) { std::cerr << "invalid number of arguments\n"; }
+    if ( argc != 4 ) { std::cerr << "invalid number of arguments\n"; }
 
     auto file_content_1 = reader(argv[1]);
     auto file_content_2 = reader(argv[2]);
@@ -94,7 +94,7 @@ int main(int argc, char ** argv)
     parse(file_content_1, items_map, items_idx);
     parse(file_content_2, items_map, items_idx);
 
-    print(items_map, items_idx);
+    print(items_map, items_idx, argv[3]);
 
     return 0;
 }

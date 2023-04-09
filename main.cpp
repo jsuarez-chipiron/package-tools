@@ -81,10 +81,12 @@ void print(const std::unordered_map<std::string, std::set<std::string>>& map, co
     std::cout << "</Package>\n";
 }
 
-int main(int /*argc*/, char ** /*argv*/)
+int main(int argc, char ** argv)
 {
-    auto file_content_1 = reader("/home/javier/Tech/c++/flattern/package.xml");
-    auto file_content_2 = reader("/home/javier/Tech/c++/flattern/mini.xml");
+    if ( argc != 3 ) { std::cerr << "invalid number of arguments\n"; }
+
+    auto file_content_1 = reader(argv[1]);
+    auto file_content_2 = reader(argv[2]);
 
     std::unordered_map<std::string, std::set<std::string>> items_map;
     std::set<std::string> items_idx;

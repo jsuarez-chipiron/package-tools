@@ -1,7 +1,5 @@
 # package-tools
 
-## merge-packages
-
 ### compile
 
 ```sh
@@ -9,6 +7,8 @@ mkdir build && cd build
 cmake ..
 make
 ```
+
+## merge-packages
 
 ### execute
 
@@ -20,3 +20,12 @@ The command outputs the merge of both input files. The types are sorted by name 
 
 The last arg is the version to be printed
 
+## extract-tests
+
+### execute
+
+```sh
+./build/extract-tests package.xml
+```
+
+Return a list of the test classes included in the package for use as RunSpecifiedTests content
